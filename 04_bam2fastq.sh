@@ -18,12 +18,12 @@ echo "Total BAM files: $(ls bam/*.bam | wc -l)"
 # Method 1: Using GNU Parallel (if available)
 if command -v parallel &> /dev/null; then
     echo "Using GNU Parallel..."
-    ls bam/*.bam | parallel -j $NCPU 'echo "Converting {}..."; samtools fastq {} | gzip > fastq/{/.}.fastq.gz'
+    ls bam/*.bam | parallel -j $NCPU 'echo "Converting {}..."; samtools fastq -T MM,ML {} | gzip > fastq/{/.}.fastq.gz'
     
 # Method 2: Using xargs (fallback)
 else
     echo "GNU Parallel not found, using xargs..."
-    ls bam/*.bam | xargs -P $NCPU -I {} bash -c 'echo "Converting {}..."; samtools fastq {} | gzip > fastq/$(basename {} .bam).fastq.gz'
+    ls bam/*.bam | xargs -P $NCPU -I {} bash -c 'echo "Converting {}..."; samtools fastq -T MM,ML {} | gzip > fastq/$(basename {} .bam).fastq.gz'
 fi
 
 echo "Conversion complete!"
