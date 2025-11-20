@@ -1,0 +1,2 @@
+prepare conda env myenv, which includes:
+- pod5 >= 0.3.35
