@@ -32,11 +32,13 @@ MODIFIED_BASES="6mA"
 # options for modified_basees
 # 6mA
 # 5mC_5hmC
+# See dorado basecaller help page for more info.
 
 KIT_NAME=""
 # Set KIT_NAME only if native barcode kit was used for library construction
 # current library kit: "SQK-NBD114-24"
 # Leave empty for non-barcoded ligation sequencing kits (e.g., SQK-LSK109)
+# See dorado basecaller help page for more info.
 
 # Activate environment
 source ~/miniforge3/etc/profile.d/conda.sh
@@ -104,11 +106,12 @@ if [ -n "${KIT_NAME}" ]; then
         --models-directory "${MODEL_DIR}" \
         --modified-bases "${MODIFIED_BASES}" \
         --kit-name "${KIT_NAME}" \
-        --no-trim \
         -x cuda:all \
         "${MODEL_NAME}" \
         "${CHUNK_FILE}" \
         > "${OUTPUT_BAM}"
+
+# --no-trim is not allowed when barcoded it kis allocated
 else
     echo "Running without barcode kit (ligation sequencing)"
     "${DORADO_BIN}" basecaller \
