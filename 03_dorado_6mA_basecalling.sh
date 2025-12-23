@@ -28,14 +28,14 @@ OUTPUT_DIR="${WORK_DIR}/bam_chunks"
 DORADO_BIN="${HOME}/bin/dorado"
 MODEL_DIR="${HOME}/.cache/dorado/models"
 MODEL_NAME="dna_r10.4.1_e8.2_400bps_sup@v5.2.0"
-MODIFIED_BASES="m6A"
+MODIFIED_BASES="6mA"
 # options for modified_basees
-# m6A
+# 6mA
 # 5mC_5hmC
 
 KIT_NAME=""
 # Set KIT_NAME only if native barcode kit was used for library construction
-# current library kit: "SQK-NBD114.24"
+# current library kit: "SQK-NBD114-24"
 # Leave empty for non-barcoded ligation sequencing kits (e.g., SQK-LSK109)
 
 # Activate environment
